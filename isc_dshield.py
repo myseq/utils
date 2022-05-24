@@ -24,7 +24,7 @@ banner = f"""
          [ {description} ]
     """
 
-notes="""
+notes=""" 
 
     Internet Storm Center / DShield API
     @ https://isc.sans.edu/api/
