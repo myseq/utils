@@ -15,8 +15,6 @@ from colorama import init, Fore, Back, Style
 import pyfiglet
 from concurrent.futures import ThreadPoolExecutor as PoolExecutor
 
-from icecream import ic
-
 
 appname='RH-Access'
 description = f'https://access.redhat.com/security/data/metrics/cve_dates.txt'
