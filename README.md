@@ -9,7 +9,7 @@ Here are some of the small utilities that I wrote for fun and testing.
 | rh_access.py | Search any CVE released by Red Hat |
 | fp_https.py | Fingerprint HTTPS certificate |
 
-<! --
+<!--
 ## Screenshots
 
 ![rh_access.py](screenshots/RH_Access.png)
