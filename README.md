@@ -8,8 +8,8 @@ Here are some of the small utilities that I wrote for fun and testing.
 | mouse_jiggler.py | A mouse jiggler for prevents it from falling asleep by moving the mouse to simulate human input. |
 | isc_dshield.py | To show the ISC Infocon and search for MS patches information. |
 | fp_https.py | Fingerprint HTTPS certificate |
-| rh_cve_check.py | Retrieve CVE details directly via RedHat Security Data API. |
-| rh_cve_check.zip | (Windows executable) Same as `rh_cve_check.py`. |
+| rha_cve_check.py | Retrieve CVE details directly via RedHat Security Data API. |
+| rha_cve_check.zip | (Windows executable) Same as `rha_cve_check.py`. |
 
 Some old utils that used to be working:
 
@@ -19,7 +19,7 @@ Some old utils that used to be working:
 
 ### rh_cve_check.py
 
-See `README_RH_Security_Data.md` for more details.
+See `README_RHA_Security_Data.md` for more details.
 
 ```console
 
