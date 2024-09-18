@@ -18,23 +18,31 @@ Some old utils that used to be working:
 
 ### rh_cve_check.py
 
+See `README_RH_Security_Data.md` for more details.
+
 ```console
 
-$ python3 rh_cve_check.py -e CVE-2022-48565 
+$ python rh_cve_check.py -h 
 
- [*] Searching 1/1 CVEs...
+usage: rh_cve_check.py [-h] [-e <cve> [<cve> ...]] [-v]
 
- [+] [200] https://access.redhat.com/hydra/rest/securitydata/cve/CVE-2022-48565.json
+   Zzzzz   |\      _,,,---,,_
+           /,`.-'`'    -.  ;-;;,_   __author__ : [ zd ]
+          |,4-  ) )-,_..;\ (  `'-'  __year__   : [ 2024.09 ]
+         '---''(_/--'  `-'\_)       __file__   : [ ./rh_cve_check.py ]
 
- [*] All [1 responses] are OK.
+         Retrieve CVE details directly via RedHat Security Data API.
 
- [*] Successful fetched : 1/1
+         [ base_url = 'https://access.redhat.com/hydra/rest/securitydata' ]
 
- [+] CVE/date   : CVE-2022-48565/7.8 (released at 2023-08-22)
- [-] OS/package : cpe:/a:redhat:enterprise_linux:8 [ Red Hat Enterprise Linux 8 ] Packages=python27:2.7-8100020240208011952.5f0f67de | RHSA-2024:2987
-(2024-05-22)
+options:
+  -h, --help            show this help message and exit
+  -e <cve> [<cve> ...]  Specify a CVE or a list of CVEs.
+  -v                    verbose output
 
- [*] main(): completed within [0.1276 sec].
+    RedHat Security Data API:
+
+        See https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index
 
 ```
 
