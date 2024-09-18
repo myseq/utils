@@ -9,6 +9,7 @@ Here are some of the small utilities that I wrote for fun and testing.
 | isc_dshield.py | To show the ISC Infocon and search for MS patches information. |
 | fp_https.py | Fingerprint HTTPS certificate |
 | rh_cve_check.py | Retrieve CVE details directly via RedHat Security Data API. |
+| rh_cve_check.zip | (Windows executable) Same as `rh_cve_check.py`. |
 
 Some old utils that used to be working:
 
