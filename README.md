@@ -8,12 +8,35 @@ Here are some of the small utilities that I wrote for fun and testing.
 | mouse_jiggler.py | A mouse jiggler for prevents it from falling asleep by moving the mouse to simulate human input. |
 | isc_dshield.py | To show the ISC Infocon and search for MS patches information. |
 | fp_https.py | Fingerprint HTTPS certificate |
+| rh_cve_check.py | Retrieve CVE details directly via RedHat Security Data API. |
 
 Some old utils that used to be working:
 
 | Archives | Functions |
 | :------- | :-------- |
 | 202207_rh_access.py | Search any CVE released by Red Hat. |
+
+### rh_cve_check.py
+
+```console
+
+$ python3 rh_cve_check.py -e CVE-2022-48565 
+
+ [*] Searching 1/1 CVEs...
+
+ [+] [200] https://access.redhat.com/hydra/rest/securitydata/cve/CVE-2022-48565.json
+
+ [*] All [1 responses] are OK.
+
+ [*] Successful fetched : 1/1
+
+ [+] CVE/date   : CVE-2022-48565/7.8 (released at 2023-08-22)
+ [-] OS/package : cpe:/a:redhat:enterprise_linux:8 [ Red Hat Enterprise Linux 8 ] Packages=python27:2.7-8100020240208011952.5f0f67de | RHSA-2024:2987
+(2024-05-22)
+
+ [*] main(): completed within [0.1276 sec].
+
+```
 
 ### fp_https.py
 
