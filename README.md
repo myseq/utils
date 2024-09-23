@@ -23,23 +23,25 @@ See `README_RHA_Security_Data.md` for more details.
 
 ```console
 
-$ python rh_cve_check.py -h 
+$  python rha_cve_check.py -h
 
-usage: rh_cve_check.py [-h] [-e <cve> [<cve> ...]] [-v]
+usage: rha_cve_check.py [-h] [-v] <cve> [<cve> ...]
 
    Zzzzz   |\      _,,,---,,_
            /,`.-'`'    -.  ;-;;,_   __author__ : [ zd ]
           |,4-  ) )-,_..;\ (  `'-'  __year__   : [ 2024.09 ]
-         '---''(_/--'  `-'\_)       __file__   : [ ./rh_cve_check.py ]
+         '---''(_/--'  `-'\_)       __file__   : [ ./rha_cve_check.py ]
 
          Retrieve CVE details directly via RedHat Security Data API.
 
          [ base_url = 'https://access.redhat.com/hydra/rest/securitydata' ]
 
+positional arguments:
+  <cve>       Specify a CVE or a list of CVEs.
+
 options:
-  -h, --help            show this help message and exit
-  -e <cve> [<cve> ...]  Specify a CVE or a list of CVEs.
-  -v                    verbose output
+  -h, --help  show this help message and exit
+  -v          verbose output
 
     RedHat Security Data API:
 

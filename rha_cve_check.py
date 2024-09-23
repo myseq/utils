@@ -105,19 +105,22 @@ def Showing(resp):
 
         cprod = []
         cvuln = jj.get('affected_release')
-        for v in cvuln:
-            prod = v.get('product_name', '')
-            vcpe = v.get('cpe', '')
-            rhsa = v.get('advisory', '')
-            date = f"{v.get('release_date', ''):<10.10s}"
-            pack = v.get('package', '')
-            #cprod.append(f'{prod} [ {vcpe} ]\n\t\t{rhsa} ({date})\n\t\tPackages: {pack}')
-            #cprod.append(f'OS      : {prod} [ {vcpe} ]\n\tPackages: {pack}')
-            #cprod.append(f'OS/package : [blue]{prod}[/blue] [ [green]{vcpe}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
-            cprod.append(f'OS/package : [blue]{vcpe}[/blue] [ [green]{prod}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
+        if cvuln is None:
+            cprod.append(f'OS/package : [i][blue]Current investigation indicates that no versions of Red Hat Enterprise Linux (RHEL) are affected.[/blue][/i] ')
+        else:
+            for v in cvuln:
+                prod = v.get('product_name', '')
+                vcpe = v.get('cpe', '')
+                rhsa = v.get('advisory', '')
+                date = f"{v.get('release_date', ''):<10.10s}"
+                pack = v.get('package', '')
+                #cprod.append(f'{prod} [ {vcpe} ]\n\t\t{rhsa} ({date})\n\t\tPackages: {pack}')
+                #cprod.append(f'OS      : {prod} [ {vcpe} ]\n\tPackages: {pack}')
+                #cprod.append(f'OS/package : [blue]{prod}[/blue] [ [green]{vcpe}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
+                cprod.append(f'OS/package : [blue]{vcpe}[/blue] [ [green]{prod}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
 
         print(f'')
-        rprint(f' [+] CVE/date   : {cname}/{ccvss} (released at {cdate:<10.10s})')
+        rprint(f' [+] CVE/date   : [yellow]{cname}[/yellow]/[red]{ccvss}[/red] (released at {cdate:<10.10s})')
         for p in cprod:
             # Showing affected_release
             rprint(f' [-] {p}')
@@ -139,7 +142,8 @@ def Showing(resp):
 def usage():
     """ usage() function """
     parser = argparse.ArgumentParser(description=banner, formatter_class=argparse.RawTextHelpFormatter, epilog=note)
-    parser.add_argument('-e', dest='cve', metavar='<cve>', nargs='+', help='Specify a CVE or a list of CVEs.')
+    #parser.add_argument('-e', dest='cve', metavar='<cve>', nargs='+', help='Specify a CVE or a list of CVEs.')
+    parser.add_argument(dest='cve', metavar='<cve>', nargs='+', help='Specify a CVE or a list of CVEs.')
     parser.add_argument('-v', action='store_true', help='verbose output')
 
     return parser.parse_args()
