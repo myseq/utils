@@ -11,15 +11,14 @@ import asyncio, httpx
 
 
 base_url = 'https://access.redhat.com/hydra/rest/securitydata'
-
 appname='RH-Access'
 desc = f'https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index'
 
 banner = f"""
-   Zzzzz   |\      _,,,---,,_
+   Zzzzz   |\\      _,,,---,,_
            /,`.-'`'    -.  ;-;;,_   __author__ : [ zd ]
-          |,4-  ) )-,_..;\ (  `'-'  __year__   : [ 2024.09 ]
-         '---''(_/--'  `-'\_)       __file__   : [ {__file__} ]
+          |,4-  ) )-,_..;\\ (  `'-'  __year__   : [ 2024.09 ]
+          '---''(_/--'  `-'\\_)       
 
          Retrieve CVE details directly via RedHat Security Data API.
 
@@ -117,10 +116,12 @@ def Showing(resp):
                 #cprod.append(f'{prod} [ {vcpe} ]\n\t\t{rhsa} ({date})\n\t\tPackages: {pack}')
                 #cprod.append(f'OS      : {prod} [ {vcpe} ]\n\tPackages: {pack}')
                 #cprod.append(f'OS/package : [blue]{prod}[/blue] [ [green]{vcpe}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
-                cprod.append(f'OS/package : [blue]{vcpe}[/blue] [ [green]{prod}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
+                #cprod.append(f'[yellow]{cname}[/yellow] | OS/package : [blue]{vcpe}[/blue] [ [green]{prod}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
+                cprod.append(f'[yellow]{cname}[/yellow] : [blue]{vcpe}[/blue] [ [green]{prod}[/green] ] [i]Packages=[magenta]{pack}[/magenta][/i] | [red]{rhsa}[/red] ({date:<10.10s})')
 
         print(f'')
-        rprint(f' [+] CVE/date   : [yellow]{cname}[/yellow]/[red]{ccvss}[/red] (released at {cdate:<10.10s})')
+        #rprint(f' [+] CVE/date   : [yellow]{cname}[/yellow]/[red]{ccvss}[/red] (released at {cdate:<10.10s})')
+        rprint(f' [+] [yellow]{cname}[/yellow] | [cyan]cvss3[/cyan]:[red]{ccvss}[/red] (released at {cdate:<10.10s})')
         for p in cprod:
             # Showing affected_release
             rprint(f' [-] {p}')
@@ -129,13 +130,15 @@ def Showing(resp):
             print(f'')
             rprint(f' [-] Mitigation : {cfixv}')
             pstat = jj.get('package_state')
-            for p in pstat:
-                pname = p.get('product_name', '')
-                ppack = p.get('package_name', '')
-                pdcpe = p.get('cpe', '')
-                pfixs = p.get('fix_state')
+            if pstat is not None:
+                for p in pstat:
+                    pname = p.get('product_name', '')
+                    ppack = p.get('package_name', '')
+                    pdcpe = p.get('cpe', '')
+                    pfixs = p.get('fix_state')
 
-                rprint(f' [-] os/package : [i]{pdcpe} [{pname}] [magenta]{ppack}[/magenta] ([cyan]{pfixs}[/cyan])[/i]')
+                    #rprint(f' [-] os/package : [i]{pdcpe} [{pname}] [magenta]{ppack}[/magenta] ([cyan]{pfixs}[/cyan])[/i]')
+                    rprint(f' [-] [i][blue]{cname}[/blue] : {pdcpe} [{pname}] [magenta]{ppack}[/magenta] ([cyan]{pfixs}[/cyan])[/i]')
 
 
 
