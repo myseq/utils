@@ -1,5 +1,6 @@
 # Utilities
-Here are some of the small utilities that I wrote for fun and testing. 
+
+Here are some of the utilities that I wrote for fun and testing. 
 
 ## Utils List
 
@@ -8,8 +9,9 @@ Here are some of the small utilities that I wrote for fun and testing.
 | mouse_jiggler.py | A mouse jiggler for prevents it from falling asleep by moving the mouse to simulate human input. |
 | isc_dshield.py | To show the ISC Infocon and search for MS patches information. |
 | fp_https.py | Fingerprint HTTPS certificate |
-| rha_cve_check.py | Retrieve CVE details directly via RedHat Security Data API. |
+| rha_cve_check.py | Retrieve CVE details directly via RedHat Security Data API.[^1] |
 | rha_cve_check.zip | (Windows executable) Same as `rha_cve_check.py`. |
+| find_closest_ansi.py | Find the closest ANSI code based on HEX value. |
 
 Some old utils that used to be working:
 
@@ -119,13 +121,19 @@ DNS:admetricsqa.uadapp.yahoo.com, DNS:*.gcp.mail.yahoo.com'
 
 ```
 
-<!--
-## Screenshots
 
-![rh_access.py](screenshots/RH_Access.png)
--->
+### find_closest_ansi.py
 
-## Links
+This script is fun.
+We can used it to help in customizing our terminal colors.
 
- - Access [Security Data](https://access.redhat.com/security/data/) by Red Hat Product Security.
+By providing a HEX value (from HTML page), it will return a closest ANSI code.
+With the ANSI code, we can customize the terminal *PROMPT/PS1* color easily.
+
+> *It uses `Euclidean` [^2] distance to calculate the closest RGB color code.*
+
+
+[^1]: [Security Data](https://access.redhat.com/security/data/) by Red Hat Product Security.
+
+[^2]: Euclidean distance
 
