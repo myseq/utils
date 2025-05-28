@@ -12,6 +12,9 @@ Here are some of the utilities that I wrote for fun and testing.
 | rha_cve_check.py | Retrieve CVE details directly via RedHat Security Data API.[^1] |
 | rha_cve_check.zip | (Windows executable) Same as `rha_cve_check.py`. |
 | find_closest_ansi.py | Find the closest ANSI code based on HEX value. |
+| falcon-sca.py | A static code analysis script to undestand any Python script flow. |
+
+[^1]: [Security Data](https://access.redhat.com/security/data/) by Red Hat Product Security.
 
 Some old utils that used to be working:
 
@@ -25,7 +28,7 @@ See `README_RHA_Security_Data.md` for more details.
 
 ```console
 
-$  python rha_cve_check.py -h
+%  python rha_cve_check.py -h
 
 usage: rha_cve_check.py [-h] [-v] <cve> [<cve> ...]
 
@@ -128,12 +131,35 @@ This script is fun.
 We can used it to help in customizing our terminal colors.
 
 By providing a HEX value (from HTML page), it will return a closest ANSI code.
-With the ANSI code, we can customize the terminal *PROMPT/PS1* color easily.
+With the ANSI code, we can customize the color for `PROMPT`/`PS1` at our terminal easily.
 
 > *It uses `Euclidean` [^2] distance to calculate the closest RGB color code.*
 
-
-[^1]: [Security Data](https://access.redhat.com/security/data/) by Red Hat Product Security.
-
 [^2]: Euclidean distance
+
+### falcon-sca.py
+
+This simple script analyze the **function call relationships** and print a call tree.
+The purpose is to show which functions call which others.
+This script uses the `ast` (Abstract Syntax Tree) module to parse the target file statically.
+
+
+```console
+% python3 falcon-sca.py fp_https.py 
+#filename = 'fp_https.py':
+main() | main() function
+    ├── usage() | usage(): argument parser
+    └── Showing() | Showing() function: To display the output
+        ├── get_details() | get_details() function: To get details out of the certificate
+        ├── Validating() | Validating(): Check the validity of the certificate date
+        ├── Formatting() | Formatting(): Format the hash value
+        └── Formatting() | Formatting(): Format the hash value
+```
+
+Purposes:
+
+ - Static code analysis to understand dependencies and flow.
+ - Useful for refactoring, debugging, or documentation.
+ - Gives insight into how modular or nested your codebase is.
+
 
