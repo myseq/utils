@@ -20,10 +20,10 @@ note = f'''
 '''
 
 banner = f'''
-   Zzzzz   |\      _,,,---,,_
+   Zzzzz   |\\      _,,,---,,_
            /,`.-'`'    -.  ;-;;,_   __author__ : [ zd ]
-          |,4-  ) )-,_..;\ (  `'-'  __year__   : [ 2024.06 ]
-         '---''(_/--'  `-'\_)       __file__   : [ {__file__} ]
+          |,4-  ) )-,_..;\\ (  `'-'  __year__   : [ 2024.06 ]
+         '---''(_/--'  `-'\\_)       __file__   : [ {__file__} ]
 
          [ {desc} ]
     '''
@@ -41,6 +41,7 @@ def timeit(func):
 
 
 def Formatting(thumb_hash):
+    """ Formatting(): Format the hash value """ 
     fp = ''
     for i in range(0, len(thumb_hash), 2):
         fp += thumb_hash[i:i+2]
@@ -50,6 +51,7 @@ def Formatting(thumb_hash):
 
 
 def Validating(date1,date2):
+    """ Validating(): Check the validity of the certificate date """
 
     today = datetime.now()
     dt1 = datetime.strptime(date1, "%Y%m%d%H%M%SZ")
@@ -61,6 +63,7 @@ def Validating(date1,date2):
         return 'Invalid :warning: '
 
 def get_details(cert):
+    """ get_details() function: To get details out of the certificate """
     details = {}
 
     details['subject'] = {key.decode(): value.decode() for key, value in cert.get_subject().get_components()}
@@ -91,6 +94,7 @@ def get_details(cert):
     return details
 
 def Showing(cert_bin):
+    """ Showing() function: To display the output """
 
     cert = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_ASN1, cert_bin)
     cert_details = get_details(cert)
@@ -137,7 +141,7 @@ def Showing(cert_bin):
         rprint(f'\nAlt Name : \'{subjetalt}\'\n')
 
 def usage():
-    """ usage() function """
+    """ usage(): argument parser  """
     parser = argparse.ArgumentParser(description=banner, formatter_class=argparse.RawTextHelpFormatter, epilog=note)
 
     parser.add_argument('https', metavar='https-site', help='HTTPS site.')
